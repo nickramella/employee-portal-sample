@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "./store/store";
 // import { AppStore, RootState } from "./store/store";
 
 
@@ -16,5 +17,6 @@ export const rootSlice = createSlice({
   }
 });
 
+export const selectNotifications = (state: RootState) => state.root.notifications;
 export const { setNotifications } = rootSlice.actions;
 export default rootSlice.reducer;
