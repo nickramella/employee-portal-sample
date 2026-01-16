@@ -12,6 +12,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { Button, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import Link from 'next/link';
 
 const SideBar = () => {
   const [open, setOpen] = React.useState(false);
@@ -22,19 +23,15 @@ const SideBar = () => {
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-        <div>Profile Info</div>
+        <div>Profile Card Goes Here</div>
         <Divider />
         <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                <ListItem key={text} disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItemButton>
-                </ListItem>
-            ))}
+            <ListItem>
+                <Link href="/">Home</Link>
+            </ListItem>
+            <ListItem>
+                <Link href="/personal-info">Personal Info</Link>
+            </ListItem>
         </List>
     </Box>
   );

@@ -20,7 +20,7 @@ const FormField = ({label, id, type, value, disabled, handleChange}: FormFieldPr
             onChange={handleChange}
             value={value}
             disabled={disabled}
-            className='border border-gray-700 disabled:border-gray-300 disabled:cursor-not-allowed rounded-md p-1 w-full'
+            className='border border-gray-500 disabled:border-gray-300 disabled:cursor-not-allowed rounded-md p-1 w-full'
         />
     </div>
   )
