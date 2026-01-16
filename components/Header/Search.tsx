@@ -28,7 +28,7 @@ const Search = ({label, options}: SearchProps) => {
 
   return (
     <AppRouterCacheProvider>
-        <Box sx={{ display: 'flex', alignItems: 'center', width: "60%", bgcolor: "white", p: "5px" }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', borderRadius: "10px", width: "60%", bgcolor: "white", p: "5px" }}>
             <Autocomplete
                 value={value}
                 onChange={(event, value) => {

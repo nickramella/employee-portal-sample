@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import ReduxProvider from "../lib/store/Provider"
 import "./globals.css";
 import SideBar from "@/components/SideBar";
-import HeaderBar from "@/components/HeaderBar";
+import HeaderBar from "@/components/Header/HeaderBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +34,7 @@ export default function RootLayout({
           <HeaderBar />
           <div className="flex">
             <SideBar />
-            <div className="w-full h-full flex justify-center p-6">
+            <div className="w-full h-screen flex ml-20 mt-25 justify-center p-6 bg-white">
               {children}
             </div>
           </div>

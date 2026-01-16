@@ -3,19 +3,16 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import { Button, IconButton } from '@mui/material';
+import { Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
+import { selectProfile } from '@/lib/rootSlice';
 
 const SideBar = () => {
   const [open, setOpen] = React.useState(false);
+  const profile = useSelector(selectProfile);
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -23,7 +20,10 @@ const SideBar = () => {
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-        <div className='p-4'>Profile Card Goes Here</div>
+        <div className='p-4'>
+            <h1>{`${profile.lastName}, ${profile.firstName}`}</h1>
+            <h2>{`Contact: ${profile.email}`}</h2>
+        </div>
         <List>
             <ListItem>
                 <Link href="/">Home</Link>
@@ -31,14 +31,17 @@ const SideBar = () => {
             <ListItem>
                 <Link href="/personal-info">Personal Info</Link>
             </ListItem>
+            <ListItem>
+                <Link href="/career">Career</Link>
+            </ListItem>
         </List>
     </Box>
   );
 
   return (
-    <div className='bg-gray-200 p-3 h-screen'>
+    <div className='bg-gray-100 p-3 h-screen fixed mt-25'>
       <Button onClick={toggleDrawer(true)}>
-        <MenuIcon />
+        <MenuIcon sx={{color: "black"}} fontSize="large" />
       </Button>
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}

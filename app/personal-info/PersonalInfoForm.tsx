@@ -3,6 +3,8 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import FormField from '../../components/FormField';
 import { useState } from 'react';
+import { selectProfile, setProfile } from '@/lib/rootSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const validationSchema = yup.object({
     firstName: yup
@@ -18,21 +20,28 @@ const validationSchema = yup.object({
 });
 
 const PersonalInfoForm = () => {
+    const profile = useSelector(selectProfile);
+    const dispatch = useDispatch();
     const [edit, setEdit] = useState(false);
     const formik = useFormik({
         initialValues: {
-        firstName: '',
-        lastName: '',
-        email: '',
+            firstName: profile.firstName,
+            lastName: profile.lastName,
+            email: profile.email,
         },
         validationSchema: validationSchema,
         onSubmit: values => {
-        alert(JSON.stringify(values, null, 2));
+            dispatch(setProfile(values));
+            setEdit(false);
         },
     });
 
     const handleCancel = () => {
-        formik.resetForm();
+        formik.resetForm({values: {
+            firstName: profile.firstName,
+            lastName: profile.lastName,
+            email: profile.email
+        }});
         setEdit(false);
     }
     return (
@@ -79,7 +88,7 @@ const PersonalInfoForm = () => {
                 </div>
             }
         </form>
-   );
+    );
 };
 
 export default PersonalInfoForm
