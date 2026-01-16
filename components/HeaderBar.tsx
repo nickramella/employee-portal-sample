@@ -1,9 +1,13 @@
-import React from 'react'
+import Link from 'next/link'
+import Search from './Search'
 
 const HeaderBar = () => {
   return (
-    <div className='w-screen h-18 p-4 items-center bg-white text-blue-500 flex'>
-        <div>HeaderBar</div>
+    <div className='w-screen h-18 p-6 items-center bg-purple-500 text-white flex justify-between'>
+        <div>
+            <Link href="/">Home</Link>
+        </div>
+        <Search label="Search Widgets Here:" options={["Personal Info"]} />
     </div>
   )
 }
