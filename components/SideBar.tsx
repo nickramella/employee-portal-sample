@@ -23,8 +23,7 @@ const SideBar = () => {
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-        <div>Profile Card Goes Here</div>
-        <Divider />
+        <div className='p-4'>Profile Card Goes Here</div>
         <List>
             <ListItem>
                 <Link href="/">Home</Link>

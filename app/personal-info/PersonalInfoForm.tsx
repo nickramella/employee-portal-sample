@@ -1,7 +1,7 @@
 "use client"
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import FormField from '../FormField';
+import FormField from '../../components/FormField';
 import { useState } from 'react';
 
 const validationSchema = yup.object({
@@ -62,12 +62,20 @@ const PersonalInfoForm = () => {
                 handleChange={formik.handleChange}
             />
             {!edit &&
-                <button onClick={() => setEdit(true)}>Edit</button>           
+                <button
+                    className='hover:cursor-pointer hover:text-blue-500 font-bold p-3 rounded-md'
+                    onClick={() => setEdit(true)}>
+                    EDIT
+                </button>           
             }
             {edit &&
                 <div className='space-x-4'>
-                    <button onClick={() => handleCancel()}>Cancel</button>
-                    <button type="submit">Submit</button>
+                    <button
+                        className='hover:cursor-pointer text-gray-500 hover:text-gray-700 font-bold p-3 rounded-md'
+                        onClick={() => handleCancel()}>CANCEL</button>
+                    <button
+                        className='hover:cursor-pointer hover:text-blue-500 font-bold p-3 rounded-md'
+                        type="submit">SUBMIT</button>
                 </div>
             }
         </form>

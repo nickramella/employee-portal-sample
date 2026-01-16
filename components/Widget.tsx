@@ -16,7 +16,7 @@ const Widget: React.FC<React.PropsWithChildren<WidgetProps>> = ({title, children
             aria-controls="panel1-content"
             id="panel1-header"
         >
-            <Typography component="span">{title}</Typography>
+            <Typography component="span" sx={{fontWeight: 700}}>{title}</Typography>
         </AccordionSummary>
         <AccordionDetails>
             {children}
