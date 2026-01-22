@@ -20,11 +20,13 @@ const SideBar = () => {
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-        <div className="p-4">
-            <h1>{`${profile.lastName}, ${profile.firstName}`}</h1>
-            <h2>{`Contact: ${profile.email}`}</h2>
-        </div>
-        <List>
+        { profile.lastName && profile.firstName && profile.email && 
+          <div className="p-4">
+              <h1>{`${profile.lastName}, ${profile.firstName}`}</h1>
+              <h2>{`Contact: ${profile.email}`}</h2>
+          </div>
+        }
+        <List className="font-bold">
             <ListItem>
                 <Link href="/">Home</Link>
             </ListItem>
