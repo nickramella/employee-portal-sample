@@ -1,6 +1,6 @@
 import Widget from "@/components/Widget";
 import NotificationElement from "@/components/Notifications/NotificationElement";
-import { Notification } from '@/types/Notification'
+import { Notification } from "@/types/Notification"
 
 export default function Home() {
   const exampleNotif: Notification =  {type: "standard", text: "Example", link: ""}

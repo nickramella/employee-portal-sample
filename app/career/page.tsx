@@ -1,12 +1,12 @@
 "use client"
-import Widget from '@/components/Widget'
-import { selectCareerHistory } from '@/lib/rootSlice'
-import { Box, Modal } from '@mui/material'
+import Widget from "@/components/Widget"
+import { selectCareerHistory } from "@/lib/rootSlice"
+import { Box, Modal } from "@mui/material"
 import CloseIcon from "@mui/icons-material/Close";
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import CareerHistoryForm from './CareerHistoryForm';
-import { CareerHistory } from '@/types/CareerHistory';
+import React, { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import CareerHistoryForm from "./CareerHistoryForm";
+import { CareerHistory } from "@/types/CareerHistory";
 
 const style = {
   position: "absolute",
@@ -33,6 +33,7 @@ const page = () => {
         if (careerHistory) {
             setDisplayedValues(careerHistory.filter((value) => value.key !== "0"))
         }
+        console.log(careerHistory)
     }, [careerHistory])
 
     return (
@@ -41,12 +42,14 @@ const page = () => {
                 <>
                     {displayedValues.map((value, index) => {
                         return (
-                            <CareerHistoryForm key={index} workDetails={value} />
+                            <div key={index} className="border-b border-gray-500">
+                                <CareerHistoryForm workDetails={value} />
+                            </div>
                         )
                     })}
                 </>
             }
-            <button onClick={handleOpen} className='hover:cursor-pointer hover:text-blue-500 font-bold p-3'>ADD WORK EXPERIENCE</button>
+            <button onClick={handleOpen} className="hover:cursor-pointer hover:text-blue-500 font-bold p-3">ADD WORK EXPERIENCE</button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -58,7 +61,9 @@ const page = () => {
                         <h1 className="font-bold text-xl">Work Experience</h1>
                         <button aria-label="Close Modal" onClick={handleClose} className="hover:cursor-pointer"><CloseIcon /></button>
                     </div>
-                    <CareerHistoryForm workDetails={careerHistory[0]} />
+                    <div className="p-3">
+                        <CareerHistoryForm workDetails={careerHistory[0]} createNew={true}/>
+                    </div>
                 </Box>
             </Modal>
         </Widget>

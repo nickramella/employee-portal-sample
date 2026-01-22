@@ -1,22 +1,22 @@
 "use client"
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import FormField from '../../components/FormField';
-import { useState } from 'react';
-import { selectProfile, setProfile } from '@/lib/rootSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useFormik } from "formik";
+import * as yup from "yup";
+import FormField from "../../components/FormField";
+import { useState } from "react";
+import { selectProfile, setProfile } from "@/lib/rootSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const validationSchema = yup.object({
     firstName: yup
         .string()
-        .required('Field is required'),
+        .required("Field is required"),
     lastName: yup
         .string()
-        .required('Field is required'),
+        .required("Field is required"),
     email: yup
         .string()
-        .email('Enter a valid email')
-        .required('Email is required'),
+        .email("Enter a valid email")
+        .required("Email is required"),
 });
 
 const PersonalInfoForm = () => {
@@ -72,18 +72,18 @@ const PersonalInfoForm = () => {
             />
             {!edit &&
                 <button
-                    className='hover:cursor-pointer hover:text-blue-500 font-bold p-3 rounded-md'
+                    className="hover:cursor-pointer hover:text-blue-500 font-bold p-3 rounded-md"
                     onClick={() => setEdit(true)}>
                     EDIT
                 </button>           
             }
             {edit &&
-                <div className='space-x-4'>
+                <div className="space-x-4">
                     <button
-                        className='hover:cursor-pointer text-gray-500 hover:text-gray-700 font-bold p-3 rounded-md'
+                        className="hover:cursor-pointer text-gray-500 hover:text-gray-700 font-bold p-3 rounded-md"
                         onClick={() => handleCancel()}>CANCEL</button>
                     <button
-                        className='hover:cursor-pointer hover:text-blue-500 font-bold p-3 rounded-md'
+                        className="hover:cursor-pointer hover:text-blue-500 font-bold p-3 rounded-md"
                         type="submit">SUBMIT</button>
                 </div>
             }

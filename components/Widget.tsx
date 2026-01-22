@@ -1,7 +1,7 @@
 
-import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import React from 'react';
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material"
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import React from "react";
 
 interface WidgetProps {
     title: string;
@@ -10,7 +10,7 @@ interface WidgetProps {
 
 const Widget: React.FC<React.PropsWithChildren<WidgetProps>> = ({title, children}: WidgetProps) => {
   return (
-    <div className='w-full'>
+    <div className="w-full">
         <Accordion>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}

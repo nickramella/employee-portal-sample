@@ -1,10 +1,10 @@
 "use client"
-import React, { useState } from 'react';
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import { redirect } from 'next/navigation';
+import React, { useState } from "react";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import { redirect } from "next/navigation";
 
 interface SearchProps {
     label: string,
@@ -20,15 +20,15 @@ interface Option {
 
 const Search = ({label, options}: SearchProps) => {
   const [value, setValue] = useState<Option|null>(null);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   const searchOptions = [
-  { id: 1, label: 'Personal Information', value: 'personalInfo', link: "/personal-info" },
+  { id: 1, label: "Personal Information", value: "personalInfo", link: "/personal-info" },
 ];
 
   return (
     <AppRouterCacheProvider>
-        <Box sx={{ display: 'flex', alignItems: 'center', borderRadius: "10px", width: "60%", bgcolor: "white", p: "5px" }}>
+        <Box sx={{ display: "flex", alignItems: "center", borderRadius: "10px", width: "60%", bgcolor: "white", p: "5px" }}>
             <Autocomplete
                 value={value}
                 onChange={(event, value) => {

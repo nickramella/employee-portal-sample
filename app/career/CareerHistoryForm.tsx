@@ -1,16 +1,17 @@
-import FormField from '@/components/FormField';
-import { addCareerHistory } from '@/lib/rootSlice';
-import { useFormik } from 'formik';
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import FormField from "@/components/FormField";
+import { addCareerHistory } from "@/lib/rootSlice";
+import { useFormik } from "formik";
+import React, { useState } from "react"
+import { useDispatch } from "react-redux";
 
 interface CareerHistoryFormProps {
     workDetails: any;
+    createNew?: boolean;
 }
 
-const CareerHistoryForm = ({workDetails}: CareerHistoryFormProps) => {
+const CareerHistoryForm = ({workDetails, createNew}: CareerHistoryFormProps) => {
     const dispatch = useDispatch();
-    const [edit, setEdit] = useState(false);
+    const [edit, setEdit] = useState(createNew ? true : false);
     const initialValues = {
             company: workDetails.company,
             location: workDetails.location,
@@ -67,18 +68,31 @@ const CareerHistoryForm = ({workDetails}: CareerHistoryFormProps) => {
             />
             {!edit &&
                 <button
-                    className='hover:cursor-pointer hover:text-blue-500 font-bold p-3 rounded-md'
+                    className="hover:cursor-pointer hover:text-blue-500 font-bold p-3 rounded-md"
+                    type="button"
                     onClick={() => setEdit(true)}>
                     EDIT
                 </button>           
             }
-            {edit &&
-                <div className='space-x-4'>
+            {
+                !createNew &&
+                <button
+                    className="hover:cursor-pointer hover:text-blue-500 font-bold p-3 rounded-md"
+                    type="button"
+                    onClick={() => alert("DELETE")}
+                >
+                    DELETE
+                </button>
+            }
+            { edit &&
+                <div className="space-x-4">
+                    { !createNew &&
+                        <button
+                            className="hover:cursor-pointer text-gray-500 hover:text-gray-700 font-bold p-3"
+                            onClick={() => handleCancel()}>CANCEL</button>
+                    }
                     <button
-                        className='hover:cursor-pointer text-gray-500 hover:text-gray-700 font-bold p-3'
-                        onClick={() => handleCancel()}>CANCEL</button>
-                    <button
-                        className='hover:cursor-pointer hover:text-blue-500 font-bold p-3'
+                        className="hover:cursor-pointer hover:text-blue-500 font-bold p-3"
                         type="submit">SUBMIT</button>
                 </div>
             }
