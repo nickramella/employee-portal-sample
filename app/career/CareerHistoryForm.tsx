@@ -1,15 +1,16 @@
 import FormField from "@/components/FormField";
-import { addCareerHistory } from "@/lib/rootSlice";
+import { addCareerHistory, deleteCareerHistory, updateCareerHistory } from "@/lib/rootSlice";
 import { useFormik } from "formik";
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
 
 interface CareerHistoryFormProps {
     workDetails: any;
     createNew?: boolean;
+    handleClose?: () => void;
 }
 
-const CareerHistoryForm = ({workDetails, createNew}: CareerHistoryFormProps) => {
+const CareerHistoryForm = ({workDetails, createNew, handleClose}: CareerHistoryFormProps) => {
     const dispatch = useDispatch();
     const [edit, setEdit] = useState(createNew ? true : false);
     const initialValues = {
@@ -22,8 +23,13 @@ const CareerHistoryForm = ({workDetails, createNew}: CareerHistoryFormProps) => 
         initialValues: initialValues,
         // validationSchema: validationSchema,
         onSubmit: values => {
-            console.log({...values, new: false, key: crypto.randomUUID()})
-            dispatch(addCareerHistory({...values, new: false, key: crypto.randomUUID()}));
+            if (createNew && handleClose) {
+                dispatch(addCareerHistory({...values, new: false, key: crypto.randomUUID()}));
+                handleClose();
+            }
+            else {
+                dispatch(updateCareerHistory({key: workDetails.key, values: values}))
+            }
             setEdit(false);
         },
     });
@@ -32,6 +38,11 @@ const CareerHistoryForm = ({workDetails, createNew}: CareerHistoryFormProps) => 
         formik.resetForm({values: initialValues});
         setEdit(false);
     }
+
+    useEffect(() => {
+        if (createNew) console.log("Work Details", workDetails)
+    }, [workDetails])
+
     return (
         <form onSubmit={formik.handleSubmit}>
             <FormField
@@ -66,7 +77,7 @@ const CareerHistoryForm = ({workDetails, createNew}: CareerHistoryFormProps) => 
                 disabled={!edit}
                 handleChange={formik.handleChange}
             />
-            {!edit &&
+            { !edit &&
                 <button
                     className="hover:cursor-pointer hover:text-blue-500 font-bold p-3 rounded-md"
                     type="button"
@@ -74,12 +85,11 @@ const CareerHistoryForm = ({workDetails, createNew}: CareerHistoryFormProps) => 
                     EDIT
                 </button>           
             }
-            {
-                !createNew &&
+            { !createNew &&
                 <button
                     className="hover:cursor-pointer hover:text-blue-500 font-bold p-3 rounded-md"
                     type="button"
-                    onClick={() => alert("DELETE")}
+                    onClick={() => dispatch(deleteCareerHistory(workDetails.key))}
                 >
                     DELETE
                 </button>

@@ -40,9 +40,9 @@ const page = () => {
         <Widget title="Career History">
             {displayedValues &&
                 <>
-                    {displayedValues.map((value, index) => {
+                    {displayedValues.map((value) => {
                         return (
-                            <div key={index} className="border-b border-gray-500">
+                            <div key={value.key} className="border-b border-gray-500">
                                 <CareerHistoryForm workDetails={value} />
                             </div>
                         )
@@ -62,7 +62,7 @@ const page = () => {
                         <button aria-label="Close Modal" onClick={handleClose} className="hover:cursor-pointer"><CloseIcon /></button>
                     </div>
                     <div className="p-3">
-                        <CareerHistoryForm workDetails={careerHistory[0]} createNew={true}/>
+                        <CareerHistoryForm workDetails={careerHistory[0]} createNew={true} handleClose={handleClose}/>
                     </div>
                 </Box>
             </Modal>

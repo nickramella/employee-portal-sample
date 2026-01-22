@@ -23,7 +23,7 @@ const SideBar = () => {
         { profile.lastName && profile.firstName && profile.email && 
           <div className="p-4">
               <h1>{`${profile.lastName}, ${profile.firstName}`}</h1>
-              <h2>{`Contact: ${profile.email}`}</h2>
+              <h2>{`${profile.email}`}</h2>
           </div>
         }
         <List className="font-bold">

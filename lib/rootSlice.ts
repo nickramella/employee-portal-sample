@@ -31,7 +31,21 @@ export const rootSlice = createSlice({
         state.profile = action.payload;
     },
     addCareerHistory: (state, action) => {
-        state.careerHistory = [...state.careerHistory, action.payload]
+        state.careerHistory = [...state.careerHistory, action.payload];
+    },
+    deleteCareerHistory: (state, action) => {
+      state.careerHistory = state.careerHistory.filter((value) => value.key !== action.payload);
+    },
+    updateCareerHistory: (state, action) => {
+      state.careerHistory = state.careerHistory.map((value) => {
+        return (value === action.payload.key ? {
+          ...value,
+          company: action.payload.values.company,
+          location: action.payload.values.location,
+          startDate: action.payload.values.startDate,
+          endDate: action.payload.values.endDate,
+        } : value)
+      })
     }
   }
 });
@@ -39,5 +53,5 @@ export const rootSlice = createSlice({
 export const selectNotifications = (state: RootState) => state.root.notifications;
 export const selectProfile = (state: RootState) => state.root.profile;
 export const selectCareerHistory = (state: RootState) => state.root.careerHistory;
-export const { setNotifications, setProfile, addCareerHistory } = rootSlice.actions;
+export const { setNotifications, setProfile, addCareerHistory, deleteCareerHistory, updateCareerHistory } = rootSlice.actions;
 export default rootSlice.reducer;
