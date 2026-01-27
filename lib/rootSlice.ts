@@ -8,11 +8,19 @@ const initialState = {
     lastName: "",
     email: ""
   },
+  homeAddress: {
+    country: "",
+    addressLine1: "",
+    addressLine2: "",
+    city: "",
+    state: "",
+    zip: "",
+  },
   careerHistory: [
     {
       company: "",
       location: "",
-      salary: null,
+      salary: undefined,
       description: "",
       key: "0",
       new: true,
@@ -29,6 +37,9 @@ export const rootSlice = createSlice({
     },
     setProfile: (state, action) => {
       state.profile = action.payload;
+    },
+    setHomeAddress: (state, action) => {
+      state.homeAddress = action.payload;
     },
     addCareerHistory: (state, action) => {
       state.careerHistory = [...state.careerHistory, action.payload];
@@ -52,6 +63,7 @@ export const rootSlice = createSlice({
 
 export const selectNotifications = (state: RootState) => state.root.notifications;
 export const selectProfile = (state: RootState) => state.root.profile;
+export const selectHomeAddress = (state: RootState) => state.root.homeAddress;
 export const selectCareerHistory = (state: RootState) => state.root.careerHistory;
-export const { setNotifications, setProfile, addCareerHistory, deleteCareerHistory, updateCareerHistory } = rootSlice.actions;
+export const { setNotifications, setProfile, setHomeAddress, addCareerHistory, deleteCareerHistory, updateCareerHistory } = rootSlice.actions;
 export default rootSlice.reducer;

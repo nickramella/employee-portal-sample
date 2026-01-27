@@ -1,6 +1,6 @@
 import Widget from '@/components/Widget'
 import React from 'react'
-import PayComparison from './PayComparison'
+import PayComparison from './pay-comparison/PayComparison'
 
 const page = () => {
   return (

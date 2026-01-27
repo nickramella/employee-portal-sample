@@ -12,7 +12,7 @@ interface WidgetProps {
 const Widget: React.FC<React.PropsWithChildren<WidgetProps>> = ({title, expanded=true, children}: WidgetProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(expanded);
   return (
-    <div className="w-full">
+    <div className="w-full mb-4">
         <Accordion expanded={isOpen} onChange={() => setIsOpen(!isOpen)}>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
