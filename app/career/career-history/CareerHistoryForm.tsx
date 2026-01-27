@@ -16,8 +16,8 @@ const CareerHistoryForm = ({workDetails, createNew, handleClose}: CareerHistoryF
     const initialValues = {
             company: workDetails.company,
             location: workDetails.location,
-            startDate: workDetails.startDate,
-            endDate: workDetails.endDate,
+            description: workDetails.description,
+            salary: workDetails.salary,
     }
     const formik = useFormik({
         initialValues: initialValues,
@@ -62,18 +62,18 @@ const CareerHistoryForm = ({workDetails, createNew, handleClose}: CareerHistoryF
                 handleChange={formik.handleChange}
             />
             <FormField
-                label="Start Date"
-                id="startDate"
+                label="Description"
+                id="description"
                 type="text"
-                value={formik.values.startDate}
+                value={formik.values.description}
                 disabled={!edit}
                 handleChange={formik.handleChange}
             />
             <FormField
-                label="End Date"
-                id="endDate"
-                type="text"
-                value={formik.values.endDate}
+                label="Salary"
+                id="salary"
+                type="number"
+                value={formik.values.salary}
                 disabled={!edit}
                 handleChange={formik.handleChange}
             />

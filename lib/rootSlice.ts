@@ -12,8 +12,8 @@ const initialState = {
     {
       company: "",
       location: "",
-      startDate: "",
-      endDate: "",
+      salary: null,
+      description: "",
       key: "0",
       new: true,
     }
@@ -42,8 +42,8 @@ export const rootSlice = createSlice({
           ...value,
           company: action.payload.values.company,
           location: action.payload.values.location,
-          startDate: action.payload.values.startDate,
-          endDate: action.payload.values.endDate,
+          salary: action.payload.values.salary,
+          description: action.payload.values.description,
         } : value)
       })
     }

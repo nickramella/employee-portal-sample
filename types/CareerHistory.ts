@@ -1,8 +1,8 @@
 export interface CareerHistory {
     company: string,
     location: string,
-    startDate: string,
-    endDate: string,
+    description: string,
+    salary: number | null,
     key: string,
     new: boolean,
 }
