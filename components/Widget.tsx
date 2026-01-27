@@ -1,17 +1,19 @@
-
-import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material"
+"use client";
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import React from "react";
+import React, { useState } from "react";
 
 interface WidgetProps {
     title: string;
+    expanded?: boolean;
     children?: React.ReactNode;
 }
 
-const Widget: React.FC<React.PropsWithChildren<WidgetProps>> = ({title, children}: WidgetProps) => {
+const Widget: React.FC<React.PropsWithChildren<WidgetProps>> = ({title, expanded=true, children}: WidgetProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(expanded);
   return (
     <div className="w-full">
-        <Accordion>
+        <Accordion expanded={isOpen} onChange={() => setIsOpen(!isOpen)}>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1-content"

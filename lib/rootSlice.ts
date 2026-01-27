@@ -25,13 +25,13 @@ export const rootSlice = createSlice({
   initialState,
   reducers: {
     setNotifications: (state, action) => {
-        state.notifications = action.payload;
+      state.notifications = action.payload;
     },
     setProfile: (state, action) => {
-        state.profile = action.payload;
+      state.profile = action.payload;
     },
     addCareerHistory: (state, action) => {
-        state.careerHistory = [...state.careerHistory, action.payload];
+      state.careerHistory = [...state.careerHistory, action.payload];
     },
     deleteCareerHistory: (state, action) => {
       state.careerHistory = state.careerHistory.filter((value) => value.key !== action.payload);
