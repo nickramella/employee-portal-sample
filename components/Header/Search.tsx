@@ -24,6 +24,10 @@ const Search = ({label, options}: SearchProps) => {
 
   const searchOptions = [
   { id: 1, label: "Personal Information", value: "personalInfo", link: "/personal-info" },
+  { id: 2, label: "Home Address", value: "homeAddress", link: "/personal-info" },
+  { id: 3, label: "State Tax Information", value: "stateTax", link: "/taxes" },
+  { id: 4, label: "Career History", value: "careerHistory", link: "/career" },
+  { id: 5, label: "Pay Comparison", value: "payComparison", link: "/payroll" },
 ];
 
   return (

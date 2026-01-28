@@ -9,6 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { selectProfile } from "@/lib/rootSlice";
+import SideBarLink from "./SideBarLink";
 
 const SideBar = () => {
   const [open, setOpen] = React.useState(false);
@@ -26,22 +27,13 @@ const SideBar = () => {
               <h2>{`${profile.email}`}</h2>
           </div>
         }
-        <List className="font-bold">
-            <ListItem>
-                <Link href="/">Home</Link>
-            </ListItem>
-            <ListItem>
-                <Link href="/personal-info">Personal Info</Link>
-            </ListItem>
-            <ListItem>
-                <Link href="/taxes">Taxes</Link>
-            </ListItem>
-            <ListItem>
-                <Link href="/career">Career</Link>
-            </ListItem>
-            <ListItem>
-                <Link href="/payroll">Payroll</Link>
-            </ListItem>
+        <List className="font-bold text-2xl">
+            <SideBarLink link="/" title="Home" />
+            <SideBarLink link="/personal-info" title="Personal Info" />
+            <SideBarLink link="/taxes" title="Taxes" />
+            <SideBarLink link="/career" title="Career" />
+            <SideBarLink link="/payroll" title="Payroll" />
+            <SideBarLink link="/admin" title="Admin" />
         </List>
     </Box>
   );
