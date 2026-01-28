@@ -1,5 +1,5 @@
 import React from 'react'
-import StateTaxesWidget from './StateTaxesWidget'
+import StateTaxesWidget from './StateTaxes/StateTaxesWidget'
 
 const page = () => {
   return (
