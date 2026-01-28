@@ -1,8 +1,11 @@
 import React from 'react'
+import StateTaxesWidget from './StateTaxesWidget'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div className="w-full">
+        <StateTaxesWidget />
+    </div>
   )
 }
 

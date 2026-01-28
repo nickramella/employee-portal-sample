@@ -1,34 +1,34 @@
 import FormField from "@/components/FormField";
-import { addCareerHistory, deleteCareerHistory, updateCareerHistory } from "@/lib/rootSlice";
+import { addStateTaxInfo, deleteCareerHistory, updateStateTaxInfo } from "@/lib/rootSlice";
+import { StateTax } from "@/types/StateTax";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
 
-interface CareerHistoryFormProps {
-    workDetails: any;
+interface StateTaxesFormProps {
+    stateTaxInfo: any;
     createNew?: boolean;
     handleClose?: () => void;
 }
 
-const CareerHistoryForm = ({workDetails, createNew, handleClose}: CareerHistoryFormProps) => {
+const StateTaxesForm = ({stateTaxInfo, createNew, handleClose}: StateTaxesFormProps) => {
     const dispatch = useDispatch();
     const [edit, setEdit] = useState(createNew ? true : false);
     const initialValues = {
-            company: workDetails.company,
-            location: workDetails.location,
-            description: workDetails.description,
-            salary: workDetails.salary,
+        state: stateTaxInfo.state,
+        deductions: stateTaxInfo.deductions,
+        key: stateTaxInfo.key,
     }
     const formik = useFormik({
         initialValues: initialValues,
         // validationSchema: validationSchema,
         onSubmit: values => {
             if (createNew && handleClose) {
-                dispatch(addCareerHistory({...values, new: false, key: crypto.randomUUID()}));
+                dispatch(addStateTaxInfo({...values, new: false, key: crypto.randomUUID()}));
                 handleClose();
             }
             else {
-                dispatch(updateCareerHistory({key: workDetails.key, values: values}))
+                dispatch(updateStateTaxInfo({key: stateTaxInfo.key, values: values}))
             }
             setEdit(false);
         },
@@ -40,40 +40,24 @@ const CareerHistoryForm = ({workDetails, createNew, handleClose}: CareerHistoryF
     }
 
     useEffect(() => {
-        if (createNew) console.log("Work Details", workDetails)
-    }, [workDetails])
+        if (createNew) console.log("Work Details", stateTaxInfo)
+    }, [stateTaxInfo])
 
     return (
         <form onSubmit={formik.handleSubmit}>
             <FormField
-                label="Company"
-                id="company"
+                label="State"
+                id="state"
                 type="text"
-                value={formik.values.company}
+                value={formik.values.state}
                 disabled={!edit}
                 handleChange={formik.handleChange}
             />
             <FormField
-                label="Location"
-                id="location"
-                type="text"
-                value={formik.values.location}
-                disabled={!edit}
-                handleChange={formik.handleChange}
-            />
-            <FormField
-                label="Description"
-                id="description"
-                type="text"
-                value={formik.values.description}
-                disabled={!edit}
-                handleChange={formik.handleChange}
-            />
-            <FormField
-                label="Salary"
-                id="salary"
+                label="Deductions"
+                id="deductions"
                 type="number"
-                value={formik.values.salary ?? 0}
+                value={formik.values.deductions ?? 0}
                 disabled={!edit}
                 handleChange={formik.handleChange}
             />
@@ -89,7 +73,7 @@ const CareerHistoryForm = ({workDetails, createNew, handleClose}: CareerHistoryF
                 <button
                     className="hover:cursor-pointer hover:text-blue-500 font-bold p-3 rounded-md"
                     type="button"
-                    onClick={() => dispatch(deleteCareerHistory(workDetails.key))}
+                    onClick={() => dispatch(deleteCareerHistory(stateTaxInfo.key))}
                 >
                     DELETE
                 </button>
@@ -110,4 +94,4 @@ const CareerHistoryForm = ({workDetails, createNew, handleClose}: CareerHistoryF
     );
 }
 
-export default CareerHistoryForm
+export default StateTaxesForm

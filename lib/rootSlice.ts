@@ -26,6 +26,13 @@ const initialState = {
       new: true,
     }
   ],
+  stateTaxes: [
+    {
+      state: "",
+      deductions: undefined,
+      key: "0",
+    }
+  ],
 };
 
 export const rootSlice = createSlice({
@@ -57,7 +64,22 @@ export const rootSlice = createSlice({
           description: action.payload.values.description,
         } : value)
       })
-    }
+    },
+    addStateTaxInfo: (state, action) => {
+      state.stateTaxes = [...state.stateTaxes, action.payload];
+    },
+    deleteStateTaxInfo: (state, action) => {
+      state.stateTaxes = state.stateTaxes.filter((value) => value.key !== action.payload);
+    },
+    updateStateTaxInfo: (state, action) => {
+      state.stateTaxes = state.stateTaxes.map((value) => {
+        return (value === action.payload.key ? {
+          ...value,
+          state: action.payload.values.state,
+          deductions: action.payload.values.deductions,
+        } : value)
+      })
+    },
   }
 });
 
@@ -65,5 +87,6 @@ export const selectNotifications = (state: RootState) => state.root.notification
 export const selectProfile = (state: RootState) => state.root.profile;
 export const selectHomeAddress = (state: RootState) => state.root.homeAddress;
 export const selectCareerHistory = (state: RootState) => state.root.careerHistory;
-export const { setNotifications, setProfile, setHomeAddress, addCareerHistory, deleteCareerHistory, updateCareerHistory } = rootSlice.actions;
+export const selectStateTaxInfo = (state: RootState) => state.root.stateTaxes;
+export const { setNotifications, setProfile, setHomeAddress, addCareerHistory, deleteCareerHistory, updateCareerHistory, addStateTaxInfo, deleteStateTaxInfo, updateStateTaxInfo } = rootSlice.actions;
 export default rootSlice.reducer;

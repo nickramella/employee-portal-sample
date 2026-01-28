@@ -34,6 +34,9 @@ const SideBar = () => {
                 <Link href="/personal-info">Personal Info</Link>
             </ListItem>
             <ListItem>
+                <Link href="/taxes">Taxes</Link>
+            </ListItem>
+            <ListItem>
                 <Link href="/career">Career</Link>
             </ListItem>
             <ListItem>
